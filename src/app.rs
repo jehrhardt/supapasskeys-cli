@@ -1,5 +1,7 @@
 use clap::{Parser, Subcommand};
 
+use crate::commands;
+
 #[derive(Debug, Parser)]
 #[command(about = "Supapasskeys extension for Supabase", long_about = None)]
 struct Cli {
@@ -13,12 +15,11 @@ enum Commands {
     Start,
 }
 
-#[tokio::main]
-async fn main() {
+pub async fn start() {
     let cli = Cli::parse();
     match cli.command {
         Commands::Start => {
-            println!("Start command");
+            commands::start::run().await;
         }
     }
 }
