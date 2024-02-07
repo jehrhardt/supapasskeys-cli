@@ -1,7 +1,7 @@
 use clap::{Parser, Subcommand};
 
 #[derive(Debug, Parser)]
-#[command(name = "supapasskeys", about = "Supapasskeys extension for Supabase", long_about = None)]
+#[command(about = "Supapasskeys extension for Supabase", long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -13,7 +13,8 @@ enum Commands {
     Start,
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let cli = Cli::parse();
     match cli.command {
         Commands::Start => {
